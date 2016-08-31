@@ -1,0 +1,144 @@
+<html><!-- InstanceBegin template="/Templates/readme_faq.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Export Rubric Scores</title>
+<!-- InstanceEndEditable -->
+<link href="https://fonts.googleapis.com/css?family=Orienta" rel="stylesheet">
+<style>
+h1.header{
+	background:#2e6e9e url(https://apps.ats.udel.edu/canvas/banner.png) no-repeat;
+	color:#2e6e9e;
+	height: 67px;
+	font-family: Orienta, sans-serif;
+	padding: 15px 0 0 0;
+	text-align: center;
+	font-size: 40px;
+	margin:0 0 15px 0;
+	
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:medium;
+	max-width:1200px;
+	margin:5px auto;
+}
+ #footer {
+background-color: #ffe;
+text-align: center;
+border-top: thick solid #039;
+padding: 0;
+width: 100%;
+max-width:1200px;
+	margin:5px auto;
+position:fixed;
+bottom:0px;
+
+}
+.submenu{text-align:center; font-size:80%; border-bottom:solid 2px #2e6e9e; margin-top:-10px;padding-bottom:4px;}
+	.submenu a{text-decoration:none;}
+</style>
+
+
+
+
+
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'></script>
+<!--<script src="https://apps.ats.udel.edu/canvas/udats-plugins.js"></script>-->
+<script src="http://apps.ats.udel.edu/canvas/listtricks-glossary.js"></script>
+<link href="http://apps.ats.udel.edu/canvas/udats-plugins.css" rel="stylesheet" type="text/css">
+<link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/redmond/jquery-ui.css' rel='stylesheet' type='text/css'>
+<style>
+pre{white-space: pre-wrap;}
+</style>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+
+</head><body>
+<!-- InstanceBeginEditable name="pagetitle" -->
+<h1 class="header">Export Rubric Scores</h1>
+<!-- InstanceEndEditable -->
+<p class="submenu"><a href="index.html">UD Hosted Applications</a> | <a href="/canvas/readme.html">Documentation (technical)</a> | <a href="https://www.eduappcenter.com/">EduAppCenter</a></p>
+
+<!-- InstanceBeginEditable name="description" -->
+<p>This was originally created as a standalone app for use in the Admin menu. Then I added the option for installation as a course menu item, using a temporary API auth token, thinking I would share it more broadly. Then I decided to back off on the whole token dance, and delivered it as a pre-installed navigation map for all courses with a permanent token. Finally I decided to wrap it into Utilities.</p>
+<p>Theoretically this app is still installable as a standalone app, using either of the configuration xml files in this folder, but this usage has not been tested by me. It is perfectly possible that the standalone app is in use somewhere, and in any case, the launch url in utilities includes some of the files here, so this folder should not be touched.</p>
+<!-- InstanceEndEditable -->
+<h1>PHP Functions</h1>
+<div class="udats-faq"><!-- InstanceBeginEditable name="phpfns" -->
+  <ul><li>sortByName($a, $b)
+      <ul>
+        <li>
+          <pre> * sort function used by uasort to arrange users by their ['sortable_name']
+    </pre>
+        </li>
+      </ul>
+    </li>
+    <li>byname($a,$b)
+<ul>
+    <li><pre> * another sort function, this one sorts an indexed array alphabetically based on the value
+    of the [0] index 
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>sortByDate($a,$b)
+<ul>
+    <li><pre> * another uasort sorting function. This one sorts on ['due_at'] 
+   
+</pre>
+      </li>
+  </ul>
+</li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<h1>Javascript Functions</h1>
+<div class="udats-faq" style="width: 75%;">
+<!-- InstanceBeginEditable name="functions" --><ul>
+<li>parseurl()
+<ul>
+    <li><pre> * pulls the course and asst ids out of the assignment url
+</pre>
+      </li>
+  </ul>
+</li>
+
+</ul>
+<!-- InstanceEndEditable -->
+
+</div>
+<h1>Session Variables</h1>
+<div class="udats-faq"><!-- InstanceBeginEditable name="sessionvars" -->
+  <ul>
+    <li>$_SESSION['input']
+      <ul>
+        <li>The value (paste | pulldown) of this determines whether users select an assignment from a dropdown list
+        or paste in a url. The version running in Utilities only supports the latter. Standalone versions branch based on which config xml you use. If using the config.xml.php send input=paste|pulldown as a get string. Again, this has not been tested since I switched to Utilities.</li>
+      </ul>
+    </li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<h1>helper pages</h1>
+
+<div class="udats-faq"><!-- InstanceBeginEditable name="files" -->
+  <p>Note: search &quot;/&quot; to view helper pages not located in the version folder.</p>
+  <ul>
+    <li>accountability.php
+      <ul>
+        <li>downloads data as requested by Banjo</li>
+      </ul>
+    </li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<p>&nbsp;</p>
+<script>
+$(document).ready(function(e) {
+    $("div.udats-faq").listtricksGlossary({color:'#396EB2',deftarget:"bottom",searchon:true,alpha:true,width:"auto"});
+});
+</script>
+
+<div id="footer"><a href="https://sites.google.com/a/udel.edu/apps/bug-reports" target="bugreports">Bug Reports</a> | <a href="https://docs.google.com/a/udel.edu/forms/d/1iujOdz3jR9saeALKQn_skgLKhWoVkCAjZ3Fq203st8c/viewform" target="featurerequests">Feature Requests</a> | <a href="http://www.udel.edu/home/legal-notices/">Legal Notices</a></div>
+</body>
+<!-- InstanceEnd --></html>

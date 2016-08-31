@@ -1,0 +1,68 @@
+<html><!-- InstanceBegin template="/Templates/banner.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Editor Buttons</title>
+<!-- InstanceEndEditable -->
+<link href="https://fonts.googleapis.com/css?family=Orienta" rel="stylesheet">
+<style>
+h1.header{
+	background:#2e6e9e url(https://apps.ats.udel.edu/canvas/banner.png) no-repeat;
+	color:#2e6e9e;
+	height: 67px;
+	font-family: Orienta, sans-serif;
+	padding: 15px 0 0 0;
+	text-align: center;
+	font-size: 40px;
+	margin:0 0 15px 0;
+	
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:medium;
+	max-width:1200px;
+	margin:5px auto;
+}
+ #footer {
+background-color: #ffe;
+text-align: center;
+border-top: thick solid #039;
+padding: 0;
+width: 100%;
+max-width:1200px;
+	margin:5px auto;
+position:fixed;
+bottom:0px;
+
+}
+.submenu{text-align:center; font-size:80%; border-bottom:solid 2px #2e6e9e; margin-top:-10px;padding-bottom:4px;}
+	.submenu a{text-decoration:none;}
+</style>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head><body>
+<!-- InstanceBeginEditable name="pagetitle" -->
+<h1 class="header">Editor Buttons</h1>
+<!-- InstanceEndEditable -->
+<p class="submenu"><a href="index.html">UD Hosted Applications</a> | <a href="/canvas/readme.html">Documentation (technical)</a> | <a href="https://www.eduappcenter.com/">EduAppCenter</a></p>
+<!-- InstanceBeginEditable name="content" -->
+<p>Editor buttons do not require any infrastructure. They just return data to a canvas endpoint in a GET string. See documentation.</p>
+<p>For return_type=oembed, we send html as part of the </p>
+<h3>Dependent files</h3>
+<ul>
+<li> /canvas/oembed/index.php
+  <ul>
+    <li>This formats the json based on the html it grabs from $_GET['html'] which I am sending to Canvas as part of the url parameter. This is not exactly what LTI expects. In general, they are expecting the oembed endpoint to point to a location that is storing the json, but I did not want to complicate my life with another data storage system. It is a good idea to keep the amount of data in the html relatively short. I am doing that by returning a shell to Canvas, with the expectation that users will create the bulk of their content after returning to Canvas.</li>
+    </ul>
+</li>
+<li>/canvas/editorBtns/editor_files
+  <ul>
+    <li>neither of these files is necessary for the buttons to work. They serve only to provide a preview in the case of the glossary. I should probably remove that option. It is unnecessary, and quite possibly an imperfect match to what will be shown back in Canvas. Still, it's a pretty slick feature.</li>
+  </ul>
+</li>
+</ul>
+<!-- InstanceEndEditable -->
+
+<div id="footer"><a href="https://sites.google.com/a/udel.edu/apps/bug-reports" target="bugreports">Bug Reports</a> | <a href="https://docs.google.com/a/udel.edu/forms/d/1iujOdz3jR9saeALKQn_skgLKhWoVkCAjZ3Fq203st8c/viewform" target="featurerequests">Feature Requests</a> | <a href="http://www.udel.edu/home/legal-notices/">Legal Notices</a></div>
+</body>
+<!-- InstanceEnd --></html>

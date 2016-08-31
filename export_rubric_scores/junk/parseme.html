@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+function parseurl(url){
+	//alert(url);
+	//var url=document.getElementById('url').value;
+	var arr = url.split("/");
+	var courseid = arr[4];
+	var asstid = arr[6];
+	document.getElementById('one').value = courseid;
+	document.getElementById('two').value = asstid;
+}
+
+</script>
+</head>
+<body>
+
+<p>Enter an assignment url below. Check course and assignment ids and correct if necessary.</p>
+<p>This app is only available to Canvas admins, and it utilizes an admin authorization token. Output will contain all rubric scores submitted by instructors for the assignment chosen. It is your responsibility to ensure that the instructor to whom you send the output has instructor access to the course. Please do not send data directly to TAs.</p>
+<form action="index.php">
+  <p>Assignment URL:
+    <input type="text" size="70" id="url" name="parseme" ><input type="button" value="go" onclick="parseurl(parseme.value)">
+    
+  </p>
+  <p>Course ID:
+    <input type="text" name="courseid" id="one" />
+  </p>
+  <p>Assignment ID:
+    <input type="text" name="asstid" id="two" />
+  </p>
+  <p><input type="submit"></p>
+</form>
+</body>
+</html>

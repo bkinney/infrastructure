@@ -1,0 +1,155 @@
+<html><!-- InstanceBegin template="/Templates/banner.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>LTI@UD</title>
+<!-- InstanceEndEditable -->
+<link href="https://fonts.googleapis.com/css?family=Orienta" rel="stylesheet">
+<style>
+h1.header{
+	background:#2e6e9e url(https://apps.ats.udel.edu/canvas/banner.png) no-repeat;
+	color:#2e6e9e;
+	height: 67px;
+	font-family: Orienta, sans-serif;
+	padding: 15px 0 0 0;
+	text-align: center;
+	font-size: 40px;
+	margin:0 0 15px 0;
+	
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:medium;
+	max-width:1200px;
+	margin:5px auto;
+}
+ #footer {
+background-color: #ffe;
+text-align: center;
+border-top: thick solid #039;
+padding: 0;
+width: 100%;
+max-width:1200px;
+	margin:5px auto;
+position:fixed;
+bottom:0px;
+
+}
+.submenu{text-align:center; font-size:80%; border-bottom:solid 2px #2e6e9e; margin-top:-10px;padding-bottom:4px;}
+	.submenu a{text-decoration:none;}
+</style>
+<!-- InstanceBeginEditable name="head" -->
+<link rel="stylesheet" href="../../responsiveSlides/responsiveslides.css">
+<link rel="stylesheet" href="../slideshow.css">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="../../responsiveSlides/responsiveslides.min.js"></script>
+    <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+	
+     $("div.udats-rslides").each(function(index, element) {
+        $(this).find("img").each(function(index, node) {
+			if($(this).parent().is("p")){
+				$(this).unwrap("p");
+			}
+            var caption=$(this).next();
+			console.log(caption.text());
+			//.addClass("caption");
+			$(this).wrap("<li />");
+			//console.log(li.html());
+			if(caption.is("p")){
+				$(this).parent("li").append(caption);
+			}else{
+				alert(caption.text());
+			}
+        });
+		$(this).find("li").wrapAll('<ul class="rslides" />');
+		
+/*        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }*/
+      });
+    
+
+      // Slideshow 4
+	  $("ul.rslides").each(function(index, element) {
+		  $(this).attr("id","slider"+index);
+        $("#slider"+index).responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+		pause:true,
+		maxWidth:$(this).parent().width(),
+		timeout:8000,
+		random:true,
+		namespace:"callbacks"
+    });
+     });
+
+    });
+  </script>
+<style>
+	.submenu{text-align:center; font-size:80%; border-bottom:solid 2px #2e6e9e; margin-top:-10px;padding-bottom:4px;}
+	.submenu a{text-decoration:none;}
+	
+	p{padding:0 8px};
+	.callbacks_container{
+		background-color:black;
+	}
+	</style>
+
+
+
+
+<!-- InstanceEndEditable -->
+</head><body>
+<!-- InstanceBeginEditable name="pagetitle" --><h1 class="header">Home</h1>
+<p class="submenu"><a href="../index.html">UD Hosted Applications</a> | <a href="https://www.eduappcenter.com/">EduAppCenter</a></p><!-- InstanceEndEditable -->
+<p class="submenu"><a href="index.html">UD Hosted Applications</a> | <a href="/canvas/readme.html">Documentation (technical)</a> | <a href="https://www.eduappcenter.com/">EduAppCenter</a></p>
+<!-- InstanceBeginEditable name="content" -->
+   
+
+<p>Academic Technology Services hosts a number of in-house Learning Tool Interactivity (LTI) applications. Although some of these 
+tools will function within the context of any LTI consumer, and a few are available as standalone applications, the majority rely on Canvas-specific LTI extensions and/or the Canvas Application Programming Interface (API)
+and are only useful within Canvas. Sakai@UD users are encouraged to consider switching to Canvas if any of the tools described on this site are 
+of interest.</p>
+<p>For more information about the UD hosted applications, follow the <strong>UD Hosted Applications</strong> link above. For a list of other LTI applications,
+or to learn more about Learning Tool Interoperabilty, visit the <strong>EduAppCenter.</strong></p>
+ <div class="udats-rslides callbacks_container">
+   <img src="../screenshots/scope.png" alt="">
+   
+   <p class="caption">Virtual Microscope LTI</p>
+   <p><img src="../screenshots/ruler.png" alt="">
+   The Architect's Scale Tutorial</p>
+   <p><img src="../screenshots/threadz_credits.png" alt="">
+   </p>
+   <p class="caption">Threadz Credits</p>
+   <p><img src="../screenshots/widgets.png" alt="">
+   </p>
+   <p class="caption">jQuery Widgets</p>
+   <p><img src="../screenshots/peer.png" alt="">
+   </p>
+   <p class="caption">Peer Evaluation</p>
+   <p><img src="../screenshots/utilities.png" alt="">
+   </p>
+   <p class="caption">Utilities</p>
+   <p><img src="../screenshots/rethinq.png" alt="">
+   </p>
+   <p class="caption">reThinQ</p>
+   <p><img src="../screenshots/karen.png" alt="">
+   </p>
+   <p class="caption">Critboard</p>
+   <p><img src="../screenshots/edbts.png" alt="">
+   </p>
+   <p class="caption">Button Dropdown</p>
+    </div>
+
+<!-- InstanceEndEditable -->
+
+<div id="footer"><a href="https://sites.google.com/a/udel.edu/apps/bug-reports" target="bugreports">Bug Reports</a> | <a href="https://docs.google.com/a/udel.edu/forms/d/1iujOdz3jR9saeALKQn_skgLKhWoVkCAjZ3Fq203st8c/viewform" target="featurerequests">Feature Requests</a> | <a href="http://www.udel.edu/home/legal-notices/">Legal Notices</a></div>
+</body>
+<!-- InstanceEnd --></html>
