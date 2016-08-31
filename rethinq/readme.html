@@ -1,0 +1,286 @@
+<html><!-- InstanceBegin template="/Templates/readme_faq.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>reThinQ</title>
+<!-- InstanceEndEditable -->
+<link href="https://fonts.googleapis.com/css?family=Orienta" rel="stylesheet">
+<style>
+h1.header{
+	background:#2e6e9e url(https://apps.ats.udel.edu/canvas/banner.png) no-repeat;
+	color:#2e6e9e;
+	height: 67px;
+	font-family: Orienta, sans-serif;
+	padding: 15px 0 0 0;
+	text-align: center;
+	font-size: 40px;
+	margin:0 0 15px 0;
+	
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:medium;
+	max-width:1200px;
+	margin:5px auto;
+}
+ #footer {
+background-color: #ffe;
+text-align: center;
+border-top: thick solid #039;
+padding: 0;
+width: 100%;
+max-width:1200px;
+	margin:5px auto;
+position:fixed;
+bottom:0px;
+
+}
+.submenu{text-align:center; font-size:80%; border-bottom:solid 2px #2e6e9e; margin-top:-10px;padding-bottom:4px;}
+	.submenu a{text-decoration:none;}
+</style>
+
+
+
+
+
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'></script>
+<!--<script src="https://apps.ats.udel.edu/canvas/udats-plugins.js"></script>-->
+<script src="http://apps.ats.udel.edu/canvas/listtricks-glossary.js"></script>
+<link href="http://apps.ats.udel.edu/canvas/udats-plugins.css" rel="stylesheet" type="text/css">
+<link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/redmond/jquery-ui.css' rel='stylesheet' type='text/css'>
+<style>
+pre{white-space: pre-wrap;}
+</style>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+
+</head><body>
+<!-- InstanceBeginEditable name="pagetitle" -->
+<h1 class="header">reThinQ</h1>
+<!-- InstanceEndEditable -->
+<p class="submenu"><a href="index.html">UD Hosted Applications</a> | <a href="/canvas/readme.html">Documentation (technical)</a> | <a href="https://www.eduappcenter.com/">EduAppCenter</a></p>
+
+<!-- InstanceBeginEditable name="description" --><p>reThinQ pulls multiple-choice (only) questions from a Canvas Quiz, and then administers those questions as a group assignment.
+Scoring of a reThinQ quiz is based on the number of attempts each team takes to select the correct response to each item. Each time an incorrect 
+answer is selected, the team loses 50% of the remaining possible points for the question. Selecting the correct response last results in
+a zero score for that question. Question authors are encouraged to provide feedback for each incorrect response, as feedback is available
+to students immediately, and may be used to provide remedial instructions.</p>
+<p>This app will need to be re-evaluated after Instructure completes its rewrite of the Quiz Engine, and presumably also the API.</p>
+<!-- InstanceEndEditable -->
+<h1>PHP Functions</h1>
+<div class="udats-faq"><!-- InstanceBeginEditable name="phpfns" -->
+  <ul>
+   
+    <li> see infrastructure
+      <ul>
+        <li>
+          <pre> * /canvas/readme.html
+    </pre>
+        </li>
+      </ul>
+    </li>
+    <li>initQuiz($overwrite,$display)
+<ul>
+    <li><pre> * grab the quiz from the server, even before you need to write it- api call should only happen once, but I put in an overwrite option in case it turns out to be needed later. set $display=true if you are ready to write out the initial quiz
+* this function pulls quiz data from session or API and then writes it out. 
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>displayMembers($api,$context)
+<ul>
+    <li><pre> *
+	here we show existing group members if any, and allow modifications. We are NOT pushing modified groups back to Canvas, so selections made here only create temporary groups for grading purposes.
+* api and $context are the global CanvasAPI and BLTI objects respectively
+   
+</pre>
+      </li>
+  </ul>
+</li>
+ <li> evaluateAnswer()
+      <ul>
+        <li>
+          <pre> * selected option is sent to this page for server-side evaluation. We are AJAXing the updated <li> back, and updating the quiz session array
+      
+    </pre>
+        </li>
+      </ul>
+    </li>
+     <li> postGrades($p,$c)
+      <ul>
+        <li>
+          <pre> * calls both global objects api and context. Not sure why I did that rather than pass them in.
+          * using Canvas multiple grade submissions endpoint to award points to the entire group - currently this is called every time a question is answered correctly.
+
+    </pre>
+        </li>
+      </ul>
+    </li>
+     <li> updateTotalScore($init)
+      <ul>
+        <li>
+          <pre> * $init = true just for setting up the total score div in the quiz header
+	Loop through the updated quiz session array to add up points and compile comments
+	this is where we can turn down the frequency of grade posting if desired
+    </pre>
+        </li>
+      </ul>
+    </li>
+     <li> get_mc_from_quiz($courseid,$quizid,$api)
+      <ul>
+        <li>
+          <pre> * called by initQuiz - probably should just be there inline, but that's a long story
+    </pre>
+        </li>
+      </ul>
+    </li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<h1>Javascript Functions</h1>
+<div class="udats-faq" style="width: 75%;">
+<!-- InstanceBeginEditable name="functions" --><ul>
+<li>tileInstructions()
+<ul>
+    <li><pre> * show/hide quiz instructions in a column to the right of the questions
+
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>delegateClick()
+<ul>
+    <li><pre> * set onclick event for answer options. Once a question is 
+    * answered correctly, unchosen options adopt the 'answered' class instead of unanswered, and lose their click behavior
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>submitScore()
+<ul>
+    <li><pre> *  only update score on button push
+</pre>
+      </li>
+  </ul>
+</li>
+<li>nextQuestion(inc)
+<ul>
+    <li><pre> * called when a student clicks the begin btn. POSTs member to this page to be checked against db entries, if OK, load quiz into target
+*
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>startQuiz(sgid)
+<ul>
+    <li><pre> * check membership against database of those who have already started the quiz. If no cheaters are found, load the questions
+    into the quiz_holder div
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>return_url_to_canvas()
+<ul>
+    <li><pre> *  php this is only relevant when the instructor is in edit assignment mode. returns quiz and group set ids to the resource selection endpoint
+   
+</pre>
+      </li>
+  </ul>
+</li>
+<li>updatePostem()
+<ul>
+    <li><pre> * After editing, update file in Files
+   
+</pre>
+      </li>
+  </ul>
+</li>
+</ul>
+<!-- InstanceEndEditable -->
+
+</div>
+<h1>Session Variables</h1>
+<div class="udats-faq"><!-- InstanceBeginEditable name="sessionvars" -->
+  <ul>
+    <li>$_SESSION['members']
+      <ul>
+        <li>members of current group, as indicated by students at time of testing</li>
+      </ul>
+    </li>
+        <li>$_SESSION['shuffle_answers']
+      <ul>
+        <li>same as $_SESSION['quiz']['shuffle_answers'] - delivery option from quiz</li>
+      </ul>
+    </li>
+        <li>$_SESSION['quiz']
+      <ul>
+        <li>the quiz data from API, stored as an array</li>
+      </ul>
+    </li>
+        <li>$_SESSION['one_question_at_a_time']
+      <ul>
+        <li>same as $_SESSION['quiz']['one_question_at_a_time'] delivery option</li>
+      </ul>
+    </li>
+    <li>$_SESSION['cant_go_back']
+      <ul>
+        <li>same as $_SESSION['quiz']['cant_go_back'] delivery option</li>
+      </ul>
+    </li>
+        <li>$_SESSION['current_question_num']
+      <ul>
+        <li>track where we are in the quiz</li>
+      </ul>
+    </li>
+        <li>$_SESSION['maxpoints']
+      <ul>
+        <li>for entire quiz</li>
+      </ul>
+    </li>
+        <li>$_SESSION['score']
+      <ul>
+        <li>quiz score</li>
+      </ul>
+    </li>
+        <li>$_SESSION['instructions']
+      <ul>
+        <li>same as $_SESSION['quiz']['description']</li>
+      </ul>
+    </li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<h1>helper pages</h1>
+
+<div class="udats-faq"><!-- InstanceBeginEditable name="files" -->
+  <p>all of the following are in /canvas/postem/</p>
+  <ul>
+ 
+    <li>index.php
+      <ul>
+        <li>launch url - just configures and load the infrastructure</li>
+      </ul>
+    </li>
+    <li>common.php
+      <ul>
+        <li>the actual code is here</li>
+      </ul>
+    </li>
+   
+    <li>jQuery js and css from cdn</li>
+  </ul>
+<!-- InstanceEndEditable --></div>
+<p>&nbsp;</p>
+<script>
+$(document).ready(function(e) {
+    $("div.udats-faq").listtricksGlossary({color:'#396EB2',deftarget:"bottom",searchon:true,alpha:true,width:"auto"});
+});
+</script>
+
+<div id="footer"><a href="https://sites.google.com/a/udel.edu/apps/bug-reports" target="bugreports">Bug Reports</a> | <a href="https://docs.google.com/a/udel.edu/forms/d/1iujOdz3jR9saeALKQn_skgLKhWoVkCAjZ3Fq203st8c/viewform" target="featurerequests">Feature Requests</a> | <a href="http://www.udel.edu/home/legal-notices/">Legal Notices</a></div>
+</body>
+<!-- InstanceEnd --></html>
