@@ -7,8 +7,14 @@ $restore=$tokentype;//change back to originally requested type if no valid token
 if(!class_exists("CanvasAPI",false))include $canvasphp . "canvasapi.php";
 //$_SESSION['token_arr']['temp']=12335;
 //$tokentype = "context";
-$token = $_SESSION['token_arr']['domain'] = "yourtokenhere";
 $domain=$_SESSION['_basic_lti_context']['custom_canvas_api_domain'];
+if($domain =="udel.instructure.com"){
+	include "/test/getDefaultToken.php";
+	$token = $_SESSION['token_arr']['domain']= getDefaultToken();
+}else{
+	$token = $_SESSION['token_arr']['domain'] = "yourtokenhere";
+}
+
 $user = $_SESSION['_basic_lti_context']['custom_canvas_user_id'];
 function get_api($token,$domain,$user){
 	
